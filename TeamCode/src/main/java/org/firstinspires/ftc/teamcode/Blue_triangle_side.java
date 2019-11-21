@@ -20,7 +20,7 @@ public class Blue_triangle_side extends LinearOpMode {
 
     }
 
-
+//play minecraft
 
     public void move(double rightPower, double leftPower, int ms) {
         frontRight.setPower(rightPower);
