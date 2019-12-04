@@ -39,6 +39,14 @@ public class Tele extends OpMode {
 
     @Override
     public void loop() {
+        telemetry.addLine("frontLeft");
+        telemetry.addLine("frontRight");
+        telemetry.addLine("backLeft");
+        telemetry.addLine("backRight");
+        telemetry.addLine("servoboiRight");
+        telemetry.addLine("servoboiLeft");
+        telemetry.addLine("pullyBoi");
+
 
 
         if (Math.abs(gamepad1.left_stick_y) > .1) {
