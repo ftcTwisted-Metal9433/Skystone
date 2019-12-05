@@ -1,13 +1,19 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+
 @Autonomous (name = "Encoder")
+@Disabled
 public class Encoder extends LinearOpMode {
+
+    Encoder robot = new HardwarePushbot()
     DcMotor frontRight = null;
     DcMotor frontLeft = null;
     DcMotor backRight = null;
@@ -27,21 +33,39 @@ public class Encoder extends LinearOpMode {
         servoboiRight = hardwareMap.servo.get("servoBoiRight");
         servoboiLeft = hardwareMap.servo.get("servoboiLeft");
 
-        frontRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODER);
-        frontLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODER);
-        backRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODER);
-        backLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODER);
-        pullyBoi.setMode(DcMotorController.RunMode.RUN_USING_ENCODER);
+
+        frontRight.setPower(0);
+        frontLeft.setPower(0);
+        backRight.setPower(0);
+        backLeft.setPower(0);
+        pullyBoi.setPower(0);
+
+
+        frontRight.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODER);
+        frontLeft.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODER);
+        backRight.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODER);
+        backLeft.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODER);
+        pullyBoi.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
 
+        private double TICKS_PER_IN = 1120/(4*Math.PI)
+
         frontRight.getCurrentPosition();
 
-        frontRight.setTargetPosition();
+        frontRight.setTargetPosition(1);
+
+        frontRight.setMode();
 
         frontRight.isBusy();
 
-        int ANDYMARK_TICKS_PER_REV = 1120;
+
+
+        public void encodeStraightDriveInches(double inches, double leftPower, double rightPower){
+
+
+        }
+
 
     }
 }

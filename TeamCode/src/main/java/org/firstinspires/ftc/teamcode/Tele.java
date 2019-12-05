@@ -39,13 +39,17 @@ public class Tele extends OpMode {
 
     @Override
     public void loop() {
-        telemetry.addLine("frontLeft");
-        telemetry.addLine("frontRight");
-        telemetry.addLine("backLeft");
-        telemetry.addLine("backRight");
-        telemetry.addLine("servoboiRight");
-        telemetry.addLine("servoboiLeft");
-        telemetry.addLine("pullyBoi");
+        telemetry.addData("frontLeft", "power FL" + frontLeft.getPower());
+        telemetry.addData("frontRight","power FR" + frontRight.getPower());
+        telemetry.addData("backLeft","power BL" + backLeft.getPower());
+        telemetry.addData("backRight","power BR" + backRight.getPower());
+        telemetry.addData("servoboiRight","power SBR" + servoboiRight.getPosition());
+        telemetry.addData("servoboiLeft","power SBL" + servoboiLeft.getPosition());
+        telemetry.addData("pullyBoi","power PB" + pullyBoi.getPower());
+
+        telemetry.update();
+
+
 
 
 
