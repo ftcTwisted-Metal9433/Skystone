@@ -56,10 +56,10 @@ public class epic_gamer_person extends OpMode {
             backRight.setPower(0);
         }
         if (gamepad1.left_bumper){
-            frontLeft.setPower(-.5);
-            backLeft.setPower(.5);
-            frontRight.setPower(.5);
-            backRight.setPower(-.5);
+            frontLeft.setPower(-.75);
+            backLeft.setPower(.75);
+            frontRight.setPower(.75);
+            backRight.setPower(-.75);
         } else {
             frontLeft.setPower(0);
             backLeft.setPower(0);
@@ -67,10 +67,10 @@ public class epic_gamer_person extends OpMode {
             backRight.setPower(0);
         }
         if (gamepad1.right_bumper) {
-            frontLeft.setPower(.5);
-            backLeft.setPower(-.5);
-            frontRight.setPower(-.5);
-            backRight.setPower(.5);
+            frontLeft.setPower(.75);
+            backLeft.setPower(-.75);
+            frontRight.setPower(-.75);
+            backRight.setPower(.75);
         } else {
             frontLeft.setPower(0);
             backLeft.setPower(0);
