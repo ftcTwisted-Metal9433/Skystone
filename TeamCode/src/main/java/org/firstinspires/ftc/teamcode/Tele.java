@@ -39,6 +39,18 @@ public class Tele extends OpMode {
 
     @Override
     public void loop() {
+        telemetry.addData("frontLeft", "power FL" + frontLeft.getPower());
+        telemetry.addData("frontRight","power FR" + frontRight.getPower());
+        telemetry.addData("backLeft","power BL" + backLeft.getPower());
+        telemetry.addData("backRight","power BR" + backRight.getPower());
+        telemetry.addData("servoboiRight","power SBR" + servoboiRight.getPosition());
+        telemetry.addData("servoboiLeft","power SBL" + servoboiLeft.getPosition());
+        telemetry.addData("pullyBoi","power PB" + pullyBoi.getPower());
+
+        telemetry.update();
+
+
+
 
 
         if (Math.abs(gamepad1.left_stick_y) > .1) {
