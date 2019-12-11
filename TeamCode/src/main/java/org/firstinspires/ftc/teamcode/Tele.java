@@ -54,15 +54,15 @@ public class Tele extends OpMode {
 
 
         if (Math.abs(gamepad1.left_stick_y) > .1) {
-            frontLeft.setPower(-gamepad1.left_stick_y * .9);
-            backLeft.setPower(-gamepad1.left_stick_y * .9);
+            frontLeft.setPower(-gamepad1.left_stick_y * 1);
+            backLeft.setPower(-gamepad1.left_stick_y * 1);
         } else {
             frontLeft.setPower(0);
             backLeft.setPower(0);
         }
         if (Math.abs(gamepad1.right_stick_y) > .1) {
-            frontRight.setPower(-gamepad1.right_stick_y * .9);
-            backRight.setPower(-gamepad1.right_stick_y * .9);
+            frontRight.setPower(-gamepad1.right_stick_y * 1);
+            backRight.setPower(-gamepad1.right_stick_y * 1);
         } else {
             frontRight.setPower(0);
             backRight.setPower(0);
