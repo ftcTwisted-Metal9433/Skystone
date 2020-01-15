@@ -121,18 +121,14 @@ public class Tele extends OpMode {
         }
 
         if (gamepad2.x) {
-            servoboiLeft.setPosition(1);
+            servoboiLeft.setPosition(.6);
         }
 
         if (gamepad2.y){
-            servoboiLeft.setPosition(.5);
+            servoboiLeft.setPosition(0);
         }
-        if (gamepad2.right_bumper){
-            servoboiRight.setPosition(0);
-        }
-        if (gamepad2.left_bumper){
-            servoboiLeft.setPosition(.5);
-        }
+
+
 
     }
 }

@@ -3,12 +3,17 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+
 @Autonomous (name = "left")
 public class Blue_side_square_correct extends LinearOpMode {
     DcMotor frontRight;
     DcMotor frontLeft;
     DcMotor backRight;
     DcMotor backLeft;
+    DcMotor pullyBoi;
+    Servo servoboiLeft;
+    Servo servoboiRight;
 
 
     @Override
@@ -17,22 +22,43 @@ public class Blue_side_square_correct extends LinearOpMode {
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
         backRight = hardwareMap.dcMotor.get("backRight");
         backLeft = hardwareMap.dcMotor.get("backLeft");
+        pullyBoi = hardwareMap.dcMotor.get("pullyBoi");
+        servoboiLeft = hardwareMap.servo.get("servoboiLeft");
+        servoboiRight= hardwareMap.servo.get("servoboiRight");
+
 
         waitForStart();
-        frontRight.setPower(.25);
-        frontLeft.setPower(-.25);
-        backRight.setPower(.25);
-        backLeft.setPower(-.25);
-        sleep(1100);
 
+        //lift
+        pullyBoi.setPower(.25);
+        sleep(100);
+        //strafe
+        frontRight.setPower(.75);
+        frontLeft.setPower(.75);
+        backRight.setPower(-.75);
+        backLeft.setPower(-.75);
+        sleep(1800);
+        //stop
         frontRight.setPower(0);
         frontLeft.setPower(0);
         backRight.setPower(0);
         backLeft.setPower(0);
         sleep(1000);
-        //turn left
-        frontRight.setPower(.27);
-        frontLeft.setPower(.27);
+        //forward
+        frontRight.setPower(.25);
+        frontLeft.setPower(-.25);
+        backRight.setPower(.25);
+        backLeft.setPower(-.25);
+        sleep(500);
+        //Down lift
+        pullyBoi.setPower(-.25);
+        sleep(100);
+        //servo
+        servoboiRight.setPosition(0);
+        servoboiLeft.setPosition(.6);
+        //strafe the other way
+        frontRight.setPower(-.27);
+        frontLeft.setPower(-.27);
         backRight.setPower(.27);
         backLeft.setPower(.27);
         sleep(1000);
@@ -47,8 +73,8 @@ public class Blue_side_square_correct extends LinearOpMode {
         frontLeft.setPower(.25);
         backRight.setPower(-.25);
         backLeft.setPower(.25);
-        sleep(1600);
-
+        sleep(2100);
+        //stop
         frontRight.setPower(0);
         frontLeft.setPower(0);
         backRight.setPower(0);
