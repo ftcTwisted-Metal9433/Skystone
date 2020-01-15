@@ -3,9 +3,13 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+<<<<<<< HEAD
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous (name = "left")
+=======
+@Autonomous (name = "BlueSideParking(Left)")
+>>>>>>> 6a769c0865fda2dd1b9de0b63e747e20d1188e8a
 public class Blue_side_square_correct extends LinearOpMode {
     DcMotor frontRight;
     DcMotor frontLeft;

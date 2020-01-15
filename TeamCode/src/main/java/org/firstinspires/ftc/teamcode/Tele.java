@@ -2,19 +2,19 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp (name = "Tele")
+@TeleOp (name = "TeleOp")
 public class Tele extends OpMode {
     DcMotor frontRight;
     DcMotor frontLeft;
     DcMotor backRight;
     DcMotor backLeft;
     DcMotor pullyBoi;
-    Servo servoboiRight;
-    Servo servoboiLeft;
+    CRServo intake;
 
     @Override
     public void init() {
@@ -23,16 +23,13 @@ public class Tele extends OpMode {
         backRight = hardwareMap.dcMotor.get("backRight");
         backLeft = hardwareMap.dcMotor.get("backLeft");
         pullyBoi = hardwareMap.dcMotor.get("pullyBoi");
-        servoboiRight = hardwareMap.servo.get("servoboiRight");
-        servoboiLeft = hardwareMap.servo.get("servoboiLeft");
+        intake = hardwareMap.crservo.get("intake");
 
         //setting the direction
         pullyBoi.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        servoboiRight.setPosition(.75);
-        servoboiLeft.setPosition(.5);
 
 
     }
@@ -43,8 +40,6 @@ public class Tele extends OpMode {
         telemetry.addData("frontRight","power FR" + frontRight.getPower());
         telemetry.addData("backLeft","power BL" + backLeft.getPower());
         telemetry.addData("backRight","power BR" + backRight.getPower());
-        telemetry.addData("servoboiRight","power SBR" + servoboiRight.getPosition());
-        telemetry.addData("servoboiLeft","power SBL" + servoboiLeft.getPosition());
         telemetry.addData("pullyBoi","power PB" + pullyBoi.getPower());
 
         telemetry.update();
@@ -52,49 +47,52 @@ public class Tele extends OpMode {
 
 
 
-
+            //Base Motors
         if (Math.abs(gamepad1.left_stick_y) > .1) {
+<<<<<<< HEAD
             frontLeft.setPower(-gamepad1.left_stick_y * 1);
             backLeft.setPower(-gamepad1.left_stick_y * 1);
+=======
+            frontLeft.setPower(-gamepad1.left_stick_y);
+            backLeft.setPower(-gamepad1.left_stick_y * .9);
+>>>>>>> 6a769c0865fda2dd1b9de0b63e747e20d1188e8a
         } else {
             frontLeft.setPower(0);
             backLeft.setPower(0);
         }
         if (Math.abs(gamepad1.right_stick_y) > .1) {
+<<<<<<< HEAD
             frontRight.setPower(-gamepad1.right_stick_y * 1);
             backRight.setPower(-gamepad1.right_stick_y * 1);
+=======
+            frontRight.setPower(-gamepad1.right_stick_y);
+            backRight.setPower(-gamepad1.right_stick_y * .9);
+>>>>>>> 6a769c0865fda2dd1b9de0b63e747e20d1188e8a
         } else {
             frontRight.setPower(0);
             backRight.setPower(0);
         }
+
+            //Strafing Left
         if (Math.abs(gamepad1.left_trigger) > .1){
             frontLeft.setPower(-gamepad1.left_trigger * 1);
             backLeft.setPower(gamepad1.left_trigger * 1);
             frontRight.setPower(gamepad1.left_trigger * 1);
             backRight.setPower(-gamepad1.left_trigger * 1);
-        } else {
+        } else if (Math.abs(gamepad1.left_trigger) < .1) {
             frontLeft.setPower(0);
             backLeft.setPower(0);
             frontRight.setPower(0);
             backRight.setPower(0);
         }
+            //Strafing Right
         if (Math.abs(gamepad1.right_trigger) > .1) {
             frontLeft.setPower(gamepad1.right_trigger * 1);
             backLeft.setPower(-gamepad1.right_trigger * 1);
             frontRight.setPower(-gamepad1.right_trigger * 1);
             backRight.setPower(gamepad1.right_trigger * 1);
-        } else {
-            frontLeft.setPower(0);
-            backLeft.setPower(0);
-            frontRight.setPower(0);
-            backRight.setPower(0);
         }
-        if (gamepad1.left_bumper){
-            frontLeft.setPower(1);
-            backLeft.setPower(1);
-            frontRight.setPower(1);
-            backRight.setPower(1);
-        } else{
+        else if (Math.abs(gamepad1.right_trigger) < .1) {
             frontLeft.setPower(0);
             backLeft.setPower(0);
             frontRight.setPower(0);
@@ -111,16 +109,9 @@ public class Tele extends OpMode {
             pullyBoi.setPower(0);
         }
         // 6 by 6 design is 4 dollars and 9 by 9 design is 6 dollars
-        if (gamepad2.a) {
-            servoboiRight.setPosition(0);
-
-        }
-        if (gamepad2.b) {
-            servoboiRight.setPosition(.75);
-
-        }
 
         if (gamepad2.x) {
+<<<<<<< HEAD
             servoboiLeft.setPosition(.6);
         }
 
@@ -130,6 +121,16 @@ public class Tele extends OpMode {
 
 
 
+=======
+            intake.setPower(1);
+        }
+        else if (gamepad2.y) {
+            intake.setPower(-1);
+        }
+        else {
+            intake.setPower(0);
+        }
+>>>>>>> 6a769c0865fda2dd1b9de0b63e747e20d1188e8a
     }
 }
 
