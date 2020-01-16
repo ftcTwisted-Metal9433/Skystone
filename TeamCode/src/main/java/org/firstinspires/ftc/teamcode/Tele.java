@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import static fi.iki.elonen.NanoHTTPD.Method.HEAD;
+
 @TeleOp (name = "TeleOp")
 public class Tele extends OpMode {
     DcMotor frontRight;
@@ -24,6 +26,7 @@ public class Tele extends OpMode {
         backLeft = hardwareMap.dcMotor.get("backLeft");
         pullyBoi = hardwareMap.dcMotor.get("pullyBoi");
         intake = hardwareMap.crservo.get("intake");
+
 
         //setting the direction
         pullyBoi.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -49,25 +52,24 @@ public class Tele extends OpMode {
 
             //Base Motors
         if (Math.abs(gamepad1.left_stick_y) > .1) {
-<<<<<<< HEAD
+
             frontLeft.setPower(-gamepad1.left_stick_y * 1);
             backLeft.setPower(-gamepad1.left_stick_y * 1);
-=======
+
             frontLeft.setPower(-gamepad1.left_stick_y);
             backLeft.setPower(-gamepad1.left_stick_y * .9);
->>>>>>> 6a769c0865fda2dd1b9de0b63e747e20d1188e8a
+
         } else {
             frontLeft.setPower(0);
             backLeft.setPower(0);
         }
         if (Math.abs(gamepad1.right_stick_y) > .1) {
-<<<<<<< HEAD
+
             frontRight.setPower(-gamepad1.right_stick_y * 1);
             backRight.setPower(-gamepad1.right_stick_y * 1);
-=======
+
             frontRight.setPower(-gamepad1.right_stick_y);
             backRight.setPower(-gamepad1.right_stick_y * .9);
->>>>>>> 6a769c0865fda2dd1b9de0b63e747e20d1188e8a
         } else {
             frontRight.setPower(0);
             backRight.setPower(0);
@@ -108,32 +110,17 @@ public class Tele extends OpMode {
         else {
             pullyBoi.setPower(0);
         }
-        // 6 by 6 design is 4 dollars and 9 by 9 design is 6 dollars
 
-        if (gamepad2.x) {
-<<<<<<< HEAD
-            servoboiLeft.setPosition(.6);
-        }
-
-        if (gamepad2.y){
-            servoboiLeft.setPosition(0);
-        }
-
-
-
-=======
             intake.setPower(1);
         }
-        else if (gamepad2.y) {
+        if (gamepad2.y) {
             intake.setPower(-1);
         }
         else {
-            intake.setPower(0);
+        intake.setPower(0);
         }
->>>>>>> 6a769c0865fda2dd1b9de0b63e747e20d1188e8a
-    }
-}
 
+}
 
 
 
