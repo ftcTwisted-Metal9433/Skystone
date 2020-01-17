@@ -76,7 +76,7 @@ public class Encoder_Bridge_Red_Left extends LinearOpMode {
 
 
         encoderDrive(.8,  6,  6, 2);
-        strafeRight(1350);
+        strafeRight(1350, 1);
         freeze();
 
 
@@ -184,7 +184,7 @@ public class Encoder_Bridge_Red_Left extends LinearOpMode {
         backRight.setPower(-1);
 
     }
-    public void strafeRight(int time) {
+    public void strafeRight(int time, double power) {
         frontLeft.setPower(1);
         backLeft.setPower(-1);
         frontRight.setPower(-1);
