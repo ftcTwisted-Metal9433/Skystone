@@ -17,6 +17,7 @@ public class Tele extends OpMode {
     DcMotor backLeft;
     DcMotor pullyBoi;
     CRServo intake;
+    Servo moveBoi;
 
     @Override
     public void init() {
@@ -26,7 +27,7 @@ public class Tele extends OpMode {
         backLeft = hardwareMap.dcMotor.get("backLeft");
         pullyBoi = hardwareMap.dcMotor.get("pullyBoi");
         intake = hardwareMap.crservo.get("intake");
-
+        moveBoi = hardwareMap.servo.get("moveBoi");
 
         //setting the direction
         pullyBoi.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -111,6 +112,14 @@ public class Tele extends OpMode {
         }
 
         intake.setPower(1);
+
+        if (gamepad1.x) {
+            moveBoi.setPosition(.8);
+        }
+        else if (gamepad1.y){
+            moveBoi.setPosition(0);
+        }
+
     }
 
 }
