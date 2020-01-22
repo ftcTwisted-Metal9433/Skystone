@@ -32,6 +32,7 @@ public class Foundation extends LinearOpMode {
     Servo moveBoi;
     Servo moveBoi2;
 
+
     @Override
     public void runOpMode() {
 
@@ -92,8 +93,8 @@ public class Foundation extends LinearOpMode {
         setMoveBoi(0);
         setMoveBoi2(.8);
         sleep(100);
-        pullUp(-.2, 1000,2);
-        strafeLeft(2000,1);
+        pullUp(-.2, 1100,2);
+        strafeLeft(2100,1);
 
 
 
