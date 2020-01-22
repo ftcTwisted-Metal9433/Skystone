@@ -22,7 +22,7 @@ public class Foundation extends LinearOpMode {
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    ;
+
     DcMotor frontRight;
     DcMotor frontLeft;
     DcMotor backRight;
@@ -80,10 +80,23 @@ public class Foundation extends LinearOpMode {
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
 
-       strafeRight(1000);
-       encoderDrive(.8,35,35,2);
+       strafeRight(100,1);
+        pullUp(1,500,1);
+       encoderDrive(.8,45,45,2);
+        sleep(1000);
+        setMoveBoi(.8);
+        setMoveBoi2(0);
+        sleep(1000);
+        encoderDrive(.8,-50,-50,2);
+        sleep(100);
         setMoveBoi(0);
-        setMoveBoi2(.2);
+        setMoveBoi2(.8);
+        sleep(100);
+        pullUp(-1, 500,1);
+        strafeLeft(2000,1);
+
+
+
 
         freeze();
 
@@ -106,21 +119,23 @@ public class Foundation extends LinearOpMode {
     public void encoderDrive(double speed,
                              double leftInches, double rightInches,
                              double timeoutS) {
-        int newLeftTarget;
-        int newRightTarget;
+        int newBackLeftTarget;
+        int newBackRightTarget;
+        int newFrontLeftTarget;
+        int newFrontRightTarget;
 
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = frontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = frontRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            newLeftTarget = backLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = backRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            frontLeft.setTargetPosition(newLeftTarget);
-            frontRight.setTargetPosition(newRightTarget);
-            backLeft.setTargetPosition(newLeftTarget);
-            backRight.setTargetPosition(newRightTarget);
+            newFrontLeftTarget = frontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newFrontRightTarget = frontRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newBackLeftTarget = backLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newBackRightTarget = backRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            frontLeft.setTargetPosition(newFrontLeftTarget);
+            frontRight.setTargetPosition(newFrontRightTarget);
+            backLeft.setTargetPosition(newBackLeftTarget);
+            backRight.setTargetPosition(newBackRightTarget);
 
             // Turn On RUN_TO_POSITION
             frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -143,15 +158,19 @@ public class Foundation extends LinearOpMode {
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (frontLeft.isBusy() && frontRight.isBusy())) {
+                    (frontLeft.isBusy() && frontRight.isBusy()&& backLeft.isBusy()&& backRight.isBusy())) {
 
-                // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
-                telemetry.addData("Path2",  "Running at %7d :%7d",
-                        frontLeft.getCurrentPosition(),
-                        frontRight.getCurrentPosition());
-                telemetry.update();
-            }
+//                // Display it for the driver.
+//                telemetry.addData("Path1",  "Running to %7d :%7d", newbackLeftTarget,  newbackRightTarget , newfrontLeftTarget, newfrontRightTarget);
+//                telemetry.addData("Path2",  "Running at %7d :%7d",
+//                        telemetry.addData("Path3",  "Running at %7d :%7d",
+//                                telemetry.addData("Path4",  "Running at %7d :%7d",
+//                        telemetry.addData("frontRight Encoder", frontRight.getCurrentPosition());
+//                                telemetry.addData("frontRight goTo", newfrontRightTarget);
+//                        frontLeft.getCurrentPosition(),
+//                        frontRight.getCurrentPosition());
+//                telemetry.update();
+                   }
 
             // Stop all motion;
             frontLeft.setPower(0);
@@ -176,7 +195,7 @@ public class Foundation extends LinearOpMode {
         intake.setPower(power);
         sleep(time);
     }
-    public void pullUp (double power, int time) {
+    public void pullUp (double power, int time, double timeoutS) {
         pullyBoi.setPower(power);
         sleep(time);
     }
@@ -185,7 +204,7 @@ public class Foundation extends LinearOpMode {
         sleep(time);
     }
 
-    public void strafeLeft(int time) {
+    public void strafeLeft(int time, double timeoutS) {
         frontLeft.setPower(-1);
         backLeft.setPower(1);
         frontRight.setPower(1);
@@ -193,7 +212,7 @@ public class Foundation extends LinearOpMode {
         sleep(time);
 
     }
-    public void strafeRight(int time) {
+    public void strafeRight(int time,double timeoutS) {
         frontLeft.setPower(1);
         backLeft.setPower(-1);
         frontRight.setPower(-1);
