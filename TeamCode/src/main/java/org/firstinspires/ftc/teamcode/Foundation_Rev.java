@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
-@Autonomous(name = "Get the foundation")
-public class Foundation extends LinearOpMode {
+@Autonomous(name = "Get the foundation rev")
+public class Foundation_Rev extends LinearOpMode {
     /* Declare OpMode members. */
     //TODO: Declare motors
     private ElapsedTime runtime = new ElapsedTime();
@@ -31,7 +31,6 @@ public class Foundation extends LinearOpMode {
     CRServo intake;
     Servo moveBoi;
     Servo moveBoi2;
-
 
     @Override
     public void runOpMode() {
@@ -74,18 +73,17 @@ public class Foundation extends LinearOpMode {
 
         telemetry.update();
 
-        setMoveBoi(0);
-        setMoveBoi2(.8);
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
+        setMoveBoi(0);
+        setMoveBoi2(.8);
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
 
-       strafeRight(500,1);
+        strafeLeft(500,1);
         pullUp(1,500,1);
-       encoderDrive(.8,37,37,2);
+        encoderDrive(.8,37,37,2);
         sleep(1000);
         setMoveBoi(.8);
         setMoveBoi2(0);
@@ -96,7 +94,7 @@ public class Foundation extends LinearOpMode {
         setMoveBoi2(.8);
         sleep(100);
         pullUp(-.3, 600,1);
-        strafeLeft(2300,1);
+        strafeRight(2300,1);
 
 
 
@@ -173,7 +171,7 @@ public class Foundation extends LinearOpMode {
 //                        frontLeft.getCurrentPosition(),
 //                        frontRight.getCurrentPosition());
 //                telemetry.update();
-                   }
+            }
 
             // Stop all motion;
             frontLeft.setPower(0);
