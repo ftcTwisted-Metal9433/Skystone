@@ -80,9 +80,9 @@ public class Foundation extends LinearOpMode {
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
 
-       strafeRight(100,1);
-        pullUp(1,500,1);
-       encoderDrive(.8,45,45,2);
+       strafeRight(600,2);
+        pullUp(1,300,1);
+       encoderDrive(.8,40,40,2);
         sleep(1000);
         setMoveBoi(.8);
         setMoveBoi2(0);
@@ -92,7 +92,7 @@ public class Foundation extends LinearOpMode {
         setMoveBoi(0);
         setMoveBoi2(.8);
         sleep(100);
-        pullUp(-1, 500,1);
+        pullUp(-.2, 1000,2);
         strafeLeft(2000,1);
 
 
