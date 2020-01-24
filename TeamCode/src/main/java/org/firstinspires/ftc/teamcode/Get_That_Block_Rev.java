@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
-@Autonomous(name = "Get the block")
-public class Get_That_Block extends LinearOpMode {
+@Autonomous(name = "Get the Block Rev")
+public class Get_That_Block_Rev extends LinearOpMode {
     /* Declare OpMode members. */
     //TODO: Declare motors
     private ElapsedTime runtime = new ElapsedTime();
@@ -22,7 +22,7 @@ public class Get_That_Block extends LinearOpMode {
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    ;
+
     DcMotor frontRight;
     DcMotor frontLeft;
     DcMotor backRight;
@@ -72,18 +72,32 @@ public class Get_That_Block extends LinearOpMode {
                 frontRight.getCurrentPosition());
 
         telemetry.update();
-
-        // Wait for the game to start (driver presses PLAY)
         setMoveBoi(0);
         setMoveBoi2(.8);
+        // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
+        strafeRight(1, 6, 2);
+        pullUp(1, 100, 1);
+        intakeOut(-1, 1000);
+        encoderDrive(.8, 33, 33, 5);
+        sleep(1000);
+        pullDown(1, 10, .5);
+        intakeIn(.5, 100);
+        sleep(2000);
+        encoderDrive(.8, -10, -10 , 3);
+        sleep(3000);
+        encoderDrive(.8, -10, 10, 3);
+        sleep(3000);
+        encoderDrive(.8, 50, 50, 10);
 
-        encoderDrive(.8,  20,  20, 5);
-        strafeLeft (1350);
+
+
+
+
+
 
         freeze();
 
@@ -103,24 +117,27 @@ public class Get_That_Block extends LinearOpMode {
      *  2) Move runs out of time
      *  3) Driver stops the opmode running.
      */
-    public void encoderDrive(double speed,
-                             double leftInches, double rightInches,
+    public void drive(double speed,
+                             double backLeftInches, double backRightInches,
+                             double frontLeftInches, double frontRightInches,
                              double timeoutS) {
-        int newLeftTarget;
-        int newRightTarget;
+        int newBackLeftTarget;
+        int newBackRightTarget;
+        int newFrontLeftTarget;
+        int newFrontRightTarget;
 
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = frontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = frontRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            newLeftTarget = backLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = backRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            frontLeft.setTargetPosition(newLeftTarget);
-            frontRight.setTargetPosition(newRightTarget);
-            backLeft.setTargetPosition(newLeftTarget);
-            backRight.setTargetPosition(newRightTarget);
+            newFrontLeftTarget = frontLeft.getCurrentPosition() + (int)(frontLeftInches * COUNTS_PER_INCH);
+            newFrontRightTarget = frontRight.getCurrentPosition() + (int)(frontRightInches * COUNTS_PER_INCH);
+            newBackLeftTarget = backLeft.getCurrentPosition() + (int)(backLeftInches * COUNTS_PER_INCH);
+            newBackRightTarget = backRight.getCurrentPosition() + (int)(backRightInches * COUNTS_PER_INCH);
+            frontLeft.setTargetPosition(newFrontLeftTarget);
+            frontRight.setTargetPosition(newFrontRightTarget);
+            backLeft.setTargetPosition(newBackLeftTarget);
+            backRight.setTargetPosition(newBackRightTarget);
 
             // Turn On RUN_TO_POSITION
             frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -143,14 +160,18 @@ public class Get_That_Block extends LinearOpMode {
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (frontLeft.isBusy() && frontRight.isBusy())) {
+                    (frontLeft.isBusy() && frontRight.isBusy()&& backLeft.isBusy()&& backRight.isBusy())) {
 
-                // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
-                telemetry.addData("Path2",  "Running at %7d :%7d",
-                        frontLeft.getCurrentPosition(),
-                        frontRight.getCurrentPosition());
-                telemetry.update();
+//                // Display it for the driver.
+//                telemetry.addData("Path1",  "Running to %7d :%7d", newbackLeftTarget,  newbackRightTarget , newfrontLeftTarget, newfrontRightTarget);
+//                telemetry.addData("Path2",  "Running at %7d :%7d",
+//                        telemetry.addData("Path3",  "Running at %7d :%7d",
+//                                telemetry.addData("Path4",  "Running at %7d :%7d",
+//                        telemetry.addData("frontRight Encoder", frontRight.getCurrentPosition());
+//                                telemetry.addData("frontRight goTo", newfrontRightTarget);
+//                        frontLeft.getCurrentPosition(),
+//                        frontRight.getCurrentPosition());
+//                telemetry.update();
             }
 
             // Stop all motion;
@@ -168,6 +189,12 @@ public class Get_That_Block extends LinearOpMode {
 
         }
     }
+    public void encoderDrive (double speed,double leftInches, double rightInches, double timeoutS) {
+        drive(speed, leftInches, rightInches, leftInches, rightInches, timeoutS);
+    }
+
+
+
     public void intakeOut (double power, int time) {
         intake.setPower(power);
         sleep(time);
@@ -176,29 +203,20 @@ public class Get_That_Block extends LinearOpMode {
         intake.setPower(power);
         sleep(time);
     }
-    public void pullUp (double power, int time) {
+    public void pullUp (double power, int time, double timeoutS) {
         pullyBoi.setPower(power);
         sleep(time);
     }
-    public void pullDown (double power, int time) {
+    public void pullDown (double power, int time, double timeoutS) {
         pullyBoi.setPower(-power);
         sleep(time);
     }
 
-    public void strafeLeft(int time) {
-        frontLeft.setPower(-1);
-        backLeft.setPower(1);
-        frontRight.setPower(1);
-        backRight.setPower(-1);
-        sleep(time);
-
+    public void strafeLeft(double speed, double inches, double timeoutS) {
+        drive(speed, inches, -inches, -inches, inches, timeoutS);
     }
-    public void strafeRight(int time) {
-        frontLeft.setPower(1);
-        backLeft.setPower(-1);
-        frontRight.setPower(-1);
-        backRight.setPower(1);
-        sleep(time);
+    public void strafeRight(double speed, double inches, double timeoutS) {
+        drive(speed, -inches, inches, inches, -inches, timeoutS);
     }
     public void setMoveBoi(double position){
         moveBoi.setPosition(position);

@@ -72,11 +72,10 @@ public class Foundation_Rev extends LinearOpMode {
                 frontRight.getCurrentPosition());
 
         telemetry.update();
-
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
         setMoveBoi(0);
         setMoveBoi2(.8);
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
