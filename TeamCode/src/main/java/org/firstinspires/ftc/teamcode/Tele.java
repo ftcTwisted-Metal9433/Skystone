@@ -113,9 +113,14 @@ public class Tele extends OpMode {
         else { pullyBoi.setPower(0);
         }
 
-        if (gamepad1.x) {
-
+        if (gamepad2.x) {
+            intake.setPower(1);
         }
+        else if (gamepad2.y){
+            intake.setPower(-1);
+        }
+        else
+            intake.setPower(0);
 
 
 
