@@ -78,21 +78,21 @@ public class Get_That_Block_Rev extends LinearOpMode {
         waitForStart();
 
 
-        strafeRight(.25, 3.6, 4);
+        strafeRight(.25, 3.4, 2);
         intakeOut(1, 2200);
         pullUp(1, 850);
         encoderDrive(1, 34.75, 34.75, 2);
         pullDown(1, 900);
         sleep(1000);
-        intakeIn(1, 600);
+        intakeIn(1, 1200);
         sleep(1000);
-        encoderDrive(1, -12, -12 , 3);
+        encoderDrive(1, -10, -10 , 3);
         encoderDrive(1, -15.5, 15.5, 3);
         encoderDrive(1, 80, 80, 20);
         encoderDrive(1, 15.5, -15.5, 3);
         pullUp(1, 1100);
         sleep(1000);
-        encoderDrive(1, 8, 8, 1);
+        encoderDrive(1, 12, 12, 2);
         setMoveBoi(.8);
         setMoveBoi2(0);
         pullDown(1, 800);
