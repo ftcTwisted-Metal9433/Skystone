@@ -115,12 +115,22 @@ public class Tele extends OpMode {
 
         if (gamepad2.x) {
             intake.setPower(1);
+<<<<<<< HEAD
         }
         else if (gamepad2.y){
             intake.setPower(-1);
         }
         else
             intake.setPower(0);
+=======
+        }
+        else if (gamepad2.y) {
+            intake.setPower(-1);
+        }
+        else
+            intake.setPower(0);
+
+>>>>>>> 12f95794c520a55fa9391d89918d0d6f0eaa7319
 
 
 
