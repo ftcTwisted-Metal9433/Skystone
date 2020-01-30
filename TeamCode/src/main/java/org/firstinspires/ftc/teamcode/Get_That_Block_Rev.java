@@ -76,23 +76,36 @@ public class Get_That_Block_Rev extends LinearOpMode {
         setMoveBoi2(.8);
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        // Step through each leg of the path,
-        // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
-        strafeRight(1, 6, 2);
-        pullUp(1, 100, 1);
-        intakeOut(-1, 1000);
-        encoderDrive(.8, 33, 33, 5);
+
+        strafeRight(.25, 3.6, 4);
+        intakeOut(1, 2200);
+        pullUp(1, 850);
+        encoderDrive(1, 34.75, 34.75, 2);
+        pullDown(1, 900);
         sleep(1000);
-        pullDown(1, 10, .5);
-        intakeIn(.5, 100);
-        sleep(2000);
-        encoderDrive(.8, -10, -10 , 3);
-        sleep(3000);
-        encoderDrive(.8, -10, 10, 3);
-        sleep(3000);
-        encoderDrive(.8, 50, 50, 10);
-
+        intakeIn(1, 600);
+        sleep(1000);
+        encoderDrive(1, -12, -12 , 3);
+        encoderDrive(1, -15.5, 15.5, 3);
+        encoderDrive(1, 80, 80, 20);
+        encoderDrive(1, 15.5, -15.5, 3);
+        pullUp(1, 1100);
+        sleep(1000);
+        encoderDrive(1, 8, 8, 1);
+        setMoveBoi(.8);
+        setMoveBoi2(0);
+        pullDown(1, 800);
+        intakeOut(1, 600);
+        encoderDrive(1, -38, -38, 3);
+        setMoveBoi(0);
+        setMoveBoi2(.8);
+        pullUp(1, 800);
+        strafeRight(.5, 40, 8);
+        pullDown(1, 1000);
+        encoderDrive(1, 30, 30, 5);
+        encoderDrive(1, 15.5, -15.5, 3);
+        encoderDrive(1, 5, 5, 2);
 
 
 
@@ -193,37 +206,46 @@ public class Get_That_Block_Rev extends LinearOpMode {
         drive(speed, leftInches, rightInches, leftInches, rightInches, timeoutS);
     }
 
-
-
     public void intakeOut (double power, int time) {
-        intake.setPower(power);
+        intake.setPower(-power);
         sleep(time);
+        intake.setPower(0);
     }
+
     public void intakeIn (double power, int time) {
         intake.setPower(power);
         sleep(time);
+        intake.setPower(0);
     }
-    public void pullUp (double power, int time, double timeoutS) {
-        pullyBoi.setPower(power);
-        sleep(time);
-    }
-    public void pullDown (double power, int time, double timeoutS) {
+
+    public void pullUp (double power, int time) {
         pullyBoi.setPower(-power);
         sleep(time);
+        pullyBoi.setPower(0);
+    }
+
+    public void pullDown (double power, int time) {
+        pullyBoi.setPower(power);
+        sleep(time);
+        pullyBoi.setPower(0);
     }
 
     public void strafeLeft(double speed, double inches, double timeoutS) {
         drive(speed, inches, -inches, -inches, inches, timeoutS);
     }
+
     public void strafeRight(double speed, double inches, double timeoutS) {
         drive(speed, -inches, inches, inches, -inches, timeoutS);
     }
+
     public void setMoveBoi(double position){
         moveBoi.setPosition(position);
     }
+
     public void setMoveBoi2(double position){
         moveBoi2.setPosition(position);
     }
+
     public void freeze () {
         frontLeft.setPower(0);
         backLeft.setPower(0);
