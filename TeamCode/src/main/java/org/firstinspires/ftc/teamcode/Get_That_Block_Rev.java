@@ -81,7 +81,7 @@ public class Get_That_Block_Rev extends LinearOpMode {
         strafeRight(.25, 3.4, 2);
         intakeOut(1, 2200);
         pullUp(1, 850);
-        encoderDrive(1, 34.75, 34.75, 2);
+        encoderDrive(1, 34.50, 34.50, 2);
         pullDown(1, 900);
         sleep(1000);
         intakeIn(1, 1200);

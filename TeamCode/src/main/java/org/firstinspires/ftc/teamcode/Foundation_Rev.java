@@ -76,10 +76,9 @@ public class Foundation_Rev extends LinearOpMode {
         setMoveBoi2(.8);
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-<<<<<<< HEAD
 
-=======
->>>>>>> 12f95794c520a55fa9391d89918d0d6f0eaa7319
+
+
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 

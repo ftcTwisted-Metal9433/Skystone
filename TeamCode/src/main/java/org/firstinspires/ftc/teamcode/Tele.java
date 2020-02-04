@@ -31,6 +31,7 @@ public class Tele extends OpMode {
         moveBoi = hardwareMap.servo.get("moveBoi");
         moveBoi2 =hardwareMap.servo.get("moveBoi2");
 
+
         //setting the direction
         pullyBoi.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -115,38 +116,31 @@ public class Tele extends OpMode {
 
         if (gamepad2.x) {
             intake.setPower(1);
-<<<<<<< HEAD
         }
         else if (gamepad2.y){
             intake.setPower(-1);
         }
         else
             intake.setPower(0);
-=======
-        }
-        else if (gamepad2.y) {
-            intake.setPower(-1);
-        }
-        else
-            intake.setPower(0);
 
->>>>>>> 12f95794c520a55fa9391d89918d0d6f0eaa7319
-
-
-
-        if (gamepad1.x) {
+        if(gamepad1.x) {
             moveBoi.setPosition(.8);
             moveBoi2.setPosition(0);
         }
-        else if (gamepad1.y){
+
+        if(gamepad1.y){
             moveBoi.setPosition(0);
             moveBoi2.setPosition(.8);
         }
 
 
+
     }
 
-}
+
+    }
+
+
 
 
 
