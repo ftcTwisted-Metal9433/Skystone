@@ -78,34 +78,40 @@ public class Get_That_Block_Rev extends LinearOpMode {
         waitForStart();
 
 
-        strafeRight(.25, 3.4, 2);
+        strafeRight(.25, 5, 2);
         intakeOut(1, 2200);
         pullUp(1, 850);
         encoderDrive(1, 34.50, 34.50, 2);
         pullDown(1, 900);
         sleep(1000);
-        intakeIn(1, 1200);
+        intakeIn(1, 2300);
         sleep(1000);
         encoderDrive(1, -10, -10 , 3);
-        encoderDrive(1, -15.5, 15.5, 3);
-        encoderDrive(1, 80, 80, 20);
         encoderDrive(1, 15.5, -15.5, 3);
-        pullUp(1, 1100);
+        encoderDrive(1, 50, 50, 20);
+        intakeOut(1,1000);
         sleep(1000);
-        encoderDrive(1, 12, 12, 2);
-        setMoveBoi(.8);
-        setMoveBoi2(0);
-        pullDown(1, 800);
-        intakeOut(1, 600);
-        encoderDrive(1, -38, -38, 3);
-        setMoveBoi(0);
-        setMoveBoi2(.8);
-        pullUp(1, 800);
-        strafeRight(.5, 40, 8);
-        pullDown(1, 1000);
-        encoderDrive(1, 30, 30, 5);
-        encoderDrive(1, 15.5, -15.5, 3);
-        encoderDrive(1, 5, 5, 2);
+        pullUp(1, 1100);
+        encoderDrive(1,-7,-7,2);
+        sleep(1000);
+        pullDown(1,1100);
+        sleep(1000);
+        encoderDrive(1,-13,-13,2);
+
+//        encoderDrive(1, 12, 12, 2);
+//        setMoveBoi(.8);
+//        setMoveBoi2(0);
+//        pullDown(1, 800);
+//        intakeOut(1, 600);
+//        encoderDrive(1, -38, -38, 3);
+//        setMoveBoi(0);
+//        setMoveBoi2(.8);
+//        pullUp(1, 800);
+//        strafeRight(.5, 40, 8);
+//        pullDown(1, 1000);
+//        encoderDrive(1, 30, 30, 5);
+//        encoderDrive(1, -15.5, 15.5, 3);
+//        encoderDrive(1, 5, 5, 2);
 
 
 

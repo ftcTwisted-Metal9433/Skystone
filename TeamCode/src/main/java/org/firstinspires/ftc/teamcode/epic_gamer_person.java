@@ -14,6 +14,10 @@ public class epic_gamer_person extends OpMode {
     DcMotor backLeft;
     DcMotor pullyBoi;
     CRServo intake;
+    Servo moveBoi;
+    Servo moveBoi2;
+
+
 
     @Override
     public void init() {
@@ -23,6 +27,8 @@ public class epic_gamer_person extends OpMode {
         backLeft = hardwareMap.dcMotor.get("backLeft");
         pullyBoi = hardwareMap.dcMotor.get("pullyBoi");
         intake = hardwareMap.crservo.get("intake");
+        moveBoi = hardwareMap.servo.get("moveBoi");
+        moveBoi2 = hardwareMap.servo.get("moveBoi2");
 
         //setting the direction
         pullyBoi.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -40,6 +46,9 @@ public class epic_gamer_person extends OpMode {
         telemetry.addData("backLeft","power BL" + backLeft.getPower());
         telemetry.addData("backRight","power BR" + backRight.getPower());
         telemetry.addData("pullyBoi","power PB" + pullyBoi.getPower());
+        telemetry.addData("intake","power Intake" + intake.getPower());
+        telemetry.addData("moveBoi","set position" + moveBoi.getPosition());
+        telemetry.addData("moveBoi2","set position" + moveBoi2.getPosition());
 
         telemetry.update();
 
@@ -108,6 +117,13 @@ public class epic_gamer_person extends OpMode {
         else {
             intake.setPower(0);
         }
+        if (gamepad1.dpad_up){
+            moveBoi.setPosition(0);
+            moveBoi2.setPosition(.8);
+        }
+        if (gamepad1.dpad_down);
+        moveBoi.setPosition(.8);
+        moveBoi2.setPosition(0);
     }
 }
 
